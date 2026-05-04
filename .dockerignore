@@ -12,3 +12,10 @@ node_modules/
 backend/__pycache__/
 backend/uploads/*
 !backend/uploads/.gitkeep
+
+# Exclude large ML model weights and video files – not needed on server
+backend/**/*.pt
+backend/**/*.mp4
+backend/**/*.avi
+backend/yolo_model/
+backend/notebooks/

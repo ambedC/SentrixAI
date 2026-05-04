@@ -1,12 +1,23 @@
+# ── Web framework ──────────────────────────────────────────────
 fastapi
-uvicorn
-opencv-python
-numpy==1.25.2
+uvicorn[standard]
+
+# ── Auth / security ────────────────────────────────────────────
 python-jose[cryptography]
 passlib[bcrypt]
 python-multipart
-twilio
-pydantic
+
+# ── Database / ORM ─────────────────────────────────────────────
 sqlalchemy
+
+# ── Validation / utilities ─────────────────────────────────────
+pydantic
 email-validator
-ultralytics
+
+# ── External services ──────────────────────────────────────────
+twilio
+
+# ── Image processing (headless – no GUI/X11 needed) ────────────
+# Only keep if backend endpoints decode/encode images directly.
+# Remove this line if no route touches frames.
+opencv-python-headless
