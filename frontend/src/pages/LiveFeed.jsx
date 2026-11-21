@@ -284,30 +284,7 @@ export default function LiveFeed() {
             {/* Side Analytics */}
             <div className="col-span-12 lg:col-span-4 space-y-8">
               {/* Chart Card */}
-              <Card className="bg-white/[0.02] border-white/5 backdrop-blur-xl">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 flex items-center gap-2">
-                    <Activity size={14} /> Activity Pattern
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="h-48 pt-4">
-                  <Line 
-                    data={chartData} 
-                    options={{ 
-                      responsive: true,
-                      maintainAspectRatio: false,
-                      scales: { 
-                        x: { display: false }, 
-                        y: { 
-                          ticks: { color: '#475569', font: { size: 9 }, maxTicksLimit: 5 }, 
-                          grid: { color: 'rgba(255,255,255,0.03)' } 
-                        } 
-                      }, 
-                      plugins: { legend: { display: false }, tooltip: { enabled: true } } 
-                    }} 
-                  />
-                </CardContent>
-              </Card>
+              
 
               {/* Alerts Timeline */}
               <Card className="bg-white/[0.02] border-white/5 backdrop-blur-xl flex-1 flex flex-col h-[400px]">

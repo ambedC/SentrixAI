@@ -54,6 +54,24 @@ def validate_email(email: str):
     email_pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
     return bool(re.match(email_pattern, email))
 
+def validate_password(password: str):
+    """
+    Validate password complexity:
+    - Minimum 5 characters
+    - At least one symbol
+    - At least one number
+    - At least one uppercase character
+    """
+    if len(password) < 5:
+        return False, "Password must be at least 5 characters long"
+    if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
+        return False, "Password must contain at least one symbol"
+    if not re.search(r"\d", password):
+        return False, "Password must contain at least one number"
+    if not re.search(r"[A-Z]", password):
+        return False, "Password must contain at least one uppercase letter"
+    return True, ""
+
 
 # Routes
 
@@ -93,6 +111,13 @@ async def register(request: RegisterRequest):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Passwords must match and cannot be empty"
+        )
+    
+    is_valid_pass, pass_error = validate_password(password)
+    if not is_valid_pass:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=pass_error
         )
     
     # Check if user already exists

@@ -83,6 +83,27 @@ export default function Register() {
       });
       return false;
     }
+
+    // Password Complexity Validation
+    const password = formData.password;
+    const hasMinLength = password.length >= 5;
+    const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const hasUppercase = /[A-Z]/.test(password);
+
+    if (!hasMinLength || !hasSymbol || !hasNumber || !hasUppercase) {
+      let errorMessage = "Password must contain:";
+      if (!hasMinLength) errorMessage += "\n• At least 5 characters";
+      if (!hasSymbol) errorMessage += "\n• One symbol (e.g. @, #, $)";
+      if (!hasNumber) errorMessage += "\n• One number";
+      if (!hasUppercase) errorMessage += "\n• One uppercase letter";
+      
+      toast.error("Weak Password", {
+        description: errorMessage,
+      });
+      return false;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       toast.error("Mismatch", {
         description: "Passwords do not match.",
